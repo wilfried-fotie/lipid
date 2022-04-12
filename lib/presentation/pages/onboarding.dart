@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.62,
+          height: MediaQuery.of(context).size.height * 0.58,
         ),
         Expanded(
             child: Container(
@@ -49,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(27.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 35.0, vertical: 27),
                       child: SmoothPageIndicator(
                           controller: _controller, // PageController
                           count: 3,
@@ -83,10 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Padding(
                                   padding: EdgeInsets.all(
                                       (MediaQuery.of(context).size.height /
-                                              1.5) *
-                                          0.01),
+                                              1.2) *
+                                          0.02),
                                   child: Text(
                                       '    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facilisi euismod consectetur quam massa diam. Elit tellus ultricies nibh cond',
+                                      textAlign: TextAlign.justify,
                                       style: ktextxSmall.copyWith(
                                         color: kPrimaryColorThree,
                                       )),
@@ -103,10 +105,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Padding(
                                   padding: EdgeInsets.all(
                                       (MediaQuery.of(context).size.height /
-                                              1.5) *
-                                          0.01),
+                                              1.2) *
+                                          0.02),
                                   child: Text(
                                       '   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facilisi euismod consectetur quam massa diam. Elit tellus ultricies nibh cond',
+                                      textAlign: TextAlign.justify,
                                       style: ktextxSmall.copyWith(
                                         color: kPrimaryColorThree,
                                       )),
@@ -123,10 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Padding(
                                   padding: EdgeInsets.all(
                                       (MediaQuery.of(context).size.height /
-                                              1.5) *
-                                          0.01),
+                                              1.2) *
+                                          0.02),
                                   child: Text(
                                       '   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facilisi euismod consectetur quam massa diam. Elit tellus ultricies nibh cond',
+                                      textAlign: TextAlign.justify,
                                       style: ktextxSmall.copyWith(
                                         color: kPrimaryColorThree,
                                       )),
@@ -135,13 +139,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           Positioned(
-                            bottom: MediaQuery.of(context).size.height * 0.01,
+                            bottom: MediaQuery.of(context).size.height * 0.04,
                             right: currentPage! >= 1.50 ? 35 : 52,
                             child: currentPage! >= 1.50
                                 ? CustomButton(
                                     text: 'Get Started',
                                     onPressed: () {
-                                      showSheet(context, true);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => const Pageur()));
                                     })
                                 : InkWell(
                                     onTap: () {

@@ -1,63 +1,67 @@
 import 'package:dio/dio.dart';
-import 'package:lipid/data/models/account.dart';
+import 'package:lipid/data/models/user.dart';
 
 class AccountsApi {
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: 'https://http://154.12.224.72/accounts',
-      connectTimeout: 10000,
-      receiveTimeout: 6000,
-    ),
-  );
+  final Dio _dio =
+      Dio(BaseOptions(baseUrl: "https://lipidadmin.com/api", headers: {
+    'Content-Type': 'application/json',
+    'Accept': "application/json",
+  }));
 
-  Future<Account?> read({required int id}) async {
-    Account? retrivedAccount;
+  Future<Map<String, dynamic>> create({required User user}) async {
+    Map<String, dynamic> retrivedUser = {};
 
     try {
-      Response response = await _dio.get<Account>(
-        "/users/$id",
+      Response response = await _dio.post(
+        '/accounts',
+        data: user.toMap(),
       );
 
-      retrivedAccount = Account.fromJson(response.data);
+      retrivedUser = response.data;
+
+      print(retrivedUser);
+    } on DioError {
+      throw Exception("data error");
     } catch (e) {
       print('Error creating user: $e');
     }
 
-    return retrivedAccount;
+    return retrivedUser;
   }
 
-  Future<Account?> create({required Account account}) async {
-    Account? retrivedAccount;
+  Future<Map<String, dynamic>> read() async {
+    dynamic retrivedUser;
 
     try {
-      Response response = await _dio.post<Account>(
-        '/users',
-        data: account.toJson(),
+      Response response = await _dio.get(
+        '/accounts',
       );
 
-      retrivedAccount = Account.fromJson(response.data);
+      retrivedUser = response.data;
+
+      print(retrivedUser);
     } catch (e) {
       print('Error creating user: $e');
     }
 
-    return retrivedAccount;
+    return retrivedUser;
   }
 
-  Future<Account?> update({
-    required Account account,
+  Future<User?> update({
+    required User user,
     required String id,
   }) async {
-    Account? updatedUser;
+    User? updatedUser;
 
     try {
       Response response = await _dio.put(
-        '/users/$id',
-        data: account.toJson(),
+        '/accounts',
+        data: user.toJson(),
       );
 
       print('User updated: ${response.data}');
 
-      updatedUser = Account.fromJson(response.data);
+      updatedUser = User.fromJson(response.data);
     } catch (e) {
       print('Error updating user: $e');
     }
@@ -67,7 +71,7 @@ class AccountsApi {
 
   Future<void> delete({required String id}) async {
     try {
-      await _dio.delete('/users/$id');
+      await _dio.delete('/accounts/$id');
       print('User deleted!');
     } catch (e) {
       print('Error deleting user: $e');

@@ -5,12 +5,8 @@ class AccountRepository {
   final AccountsApi api = AccountsApi();
 
   Future<Account?> getAccount(int id) async {
-    Account? data = await api.read(id: 1);
-    return data;
-  }
+    Map<String, dynamic> data = await api.read();
 
-  Future<Account?> createAccount(Account account) async {
-    Account? data = await api.create(account: account);
-    return data;
+    return Account.fromMap(data["data"]);
   }
 }

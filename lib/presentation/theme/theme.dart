@@ -22,7 +22,13 @@ ThemeData themeLight = ThemeData(
           backgroundColor: MaterialStateProperty.all(kPrimaryColorOne))),
   bottomSheetTheme:
       const BottomSheetThemeData(backgroundColor: Colors.transparent),
-  appBarTheme: AppBarTheme(backgroundColor: kPrimaryColorOne),
+  radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith((_) => kPrimaryColorOne)),
+  appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(color: kPrimaryColorOne),
+      backgroundColor: const Color(0xFFFFFFFF),
+      elevation: 0.0,
+      titleTextStyle: kLinkMedium.copyWith(color: kPrimaryColorTwo)),
   checkboxTheme: CheckboxThemeData(
     checkColor: MaterialStateProperty.resolveWith((_) => kPrimaryColorOne),
     fillColor: MaterialStateProperty.resolveWith((_) => Colors.transparent),

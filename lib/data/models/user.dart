@@ -32,10 +32,10 @@ class User {
       'name': name,
       'phone': phone,
       'email': email,
-      'isActive': isActive,
+      'is_active': isActive,
       'password': password,
-      'passwordConfirmation': passwordConfirmation,
-      'createdAt': createdAt,
+      'password_confirmation': passwordConfirmation,
+      'created_at': DateTime.now().toUtc().toString(),
       'account': account?.toMap(),
       'subscription': subscription?.toMap(),
     };

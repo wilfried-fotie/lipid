@@ -16,6 +16,10 @@ class ConnexionstateCubit extends Cubit<ConnexionstateInitial> {
         const ConnexionstateInitial(activeScreen: ConnexionScreen.login));
   }
 
+  void changeScreenStatus(ConnexionScreen screen, Status status) {
+    return emit(ConnexionstateInitial(activeScreen: screen, status: status));
+  }
+
   void setForgottenScreen() => emit(
       const ConnexionstateInitial(activeScreen: ConnexionScreen.forgotten));
 

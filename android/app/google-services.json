@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "703169175727",
+    "project_id": "lipid-336d3",
+    "storage_bucket": "lipid-336d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703169175727:android:0f1dd4a0a0b4446edef45a",
+        "android_client_info": {
+          "package_name": "com.lipidadmin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703169175727-3novqrsrir1eeunl917gils0f6bqjuni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLv2fBF2zTckYmqAm5s5eE5GXy6n07lXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703169175727-3novqrsrir1eeunl917gils0f6bqjuni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

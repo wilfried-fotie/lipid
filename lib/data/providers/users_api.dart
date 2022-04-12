@@ -1,32 +1,61 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:lipid/data/models/user.dart';
-import 'package:lipid/option.dart';
 
 class UsersApi {
-  final Dio _dio = Dio();
-  final Options _options = Options(headers: AppOption.params);
+  final Dio _dio =
+      Dio(BaseOptions(baseUrl: "https://lipidadmin.com/api", headers: {
+    'Content-Type': 'application/json',
+    'Accept': "application/json",
+  }));
 
-  // Future<User?> read({required int id}) async {
-  //   User? retrivedUser = await _dio.get(
-  //       "/users/$id",
-  //     );
+  Future<Map<String, dynamic>> create({required User user}) async {
+    Map<String, dynamic> retrivedUser = {};
 
-  //     retrivedUser = User.fromJson(response.data);
-  //   } catch (e) {
-  //     print('Error creating user: $e');
-  //   }
+    try {
+      Response response = await _dio.post(
+        '/users',
+        data: user.toMap(),
+      );
 
-  //   return retrivedUser;
-  // }
+      retrivedUser = response.data;
 
-  Future<dynamic> read() async {
+      print(retrivedUser);
+    } on DioError {
+      throw Exception("data error");
+    } catch (e) {
+      print('Error creating user: $e');
+    }
+
+    return retrivedUser;
+  }
+
+  Future<Map<String, dynamic>> login(
+      {required Map<String, dynamic> map}) async {
+    Map<String, dynamic> retrivedUser = {};
+
+    try {
+      Response response = await _dio.post(
+        '/auth/login',
+        data: map,
+      );
+
+      retrivedUser = response.data;
+    } on DioError {
+      throw Exception("data error");
+    } catch (e) {
+      throw Exception("data error");
+    }
+
+    return retrivedUser;
+  }
+
+  Future<Map<String, dynamic>> read() async {
     dynamic retrivedUser;
 
     try {
-      Response response =
-          await _dio.get('http://154.12.224.72/api/users', options: _options);
+      Response response = await _dio.get(
+        '/users',
+      );
 
       retrivedUser = response.data;
 
@@ -63,6 +92,15 @@ class UsersApi {
   Future<void> delete({required String id}) async {
     try {
       await _dio.delete('/users/$id');
+      print('User deleted!');
+    } catch (e) {
+      print('Error deleting user: $e');
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _dio.post('/auth/login');
       print('User deleted!');
     } catch (e) {
       print('Error deleting user: $e');

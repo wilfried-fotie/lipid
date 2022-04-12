@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipid/logic/cubits/Connexion/connexion/connexion_screen.dart';
 import 'package:lipid/logic/cubits/Connexion/connexion/connexionstate_cubit.dart';
-import 'package:lipid/logic/cubits/Connexion/internet_checker/internet_status.dart';
-import 'package:lipid/logic/cubits/Connexion/internet_checker/internetchecker_cubit.dart';
+import 'package:lipid/presentation/pages/setup.dart';
 
 import 'package:lipid/presentation/screens/connexion/login.dart';
 import 'package:lipid/presentation/theme/design_systems.dart';
+import 'package:lipid/presentation/widgets/custom_button.dart';
+import 'package:lipid/services/shared_prefs/onboarding.dart';
 
 import 'register.dart';
 import 'forgotten.dart';
@@ -52,22 +53,6 @@ class Choiceur extends StatelessWidget {
                       style: ktextxSmall.copyWith(color: kPrimaryColorOne)))
             ],
           ),
-          BlocBuilder<InternetcheckerCubit, InternetcheckerInitial>(
-            builder: (context, state) {
-              if (state.status == InternetStatus.disconnected) {
-                return Text(
-                  "Please connect to the internet",
-                  style: kLinkSmall.copyWith(color: kSecondaryRed),
-                );
-              } else if (state.status == InternetStatus.loading) {
-                return CircularProgressIndicator(
-                  color: kPrimaryColorOne,
-                );
-              } else {
-                return Container();
-              }
-            },
-          ),
           BlocBuilder<ConnexionstateCubit, ConnexionstateInitial>(
             builder: (context, state) {
               if (state.activeScreen == ConnexionScreen.login) {
@@ -80,7 +65,7 @@ class Choiceur extends StatelessWidget {
                 return const Forgotten();
               }
             },
-          )
+          ),
         ],
       ),
     );

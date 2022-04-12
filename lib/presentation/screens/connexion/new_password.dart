@@ -32,11 +32,7 @@ class _NewPassState extends State<NewPass> {
               style: kLinkMedium.copyWith(color: kGreyOne))),
       CustomInput(text: "New Password", value: newPass),
       CustomInput(text: "Confirm Password", value: pass),
-      CustomButton(
-          text: 'Renew',
-          onPressed: () {
-            context.read<ConnexionstateCubit>().setNewpassScreen();
-          }),
+      CustomButton(text: 'Renew', onPressed: () {}),
     ]);
   }
 }

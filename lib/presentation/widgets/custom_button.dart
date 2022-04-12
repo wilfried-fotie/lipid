@@ -6,13 +6,15 @@ class CustomButton extends StatelessWidget {
   final String text;
   final bool back;
   final dynamic icon;
-  const CustomButton({
-    Key? key,
-    required this.onPressed,
-    required this.text,
-    this.back = true,
-    this.icon,
-  }) : super(key: key);
+  final bool isLoading;
+  const CustomButton(
+      {Key? key,
+      required this.onPressed,
+      required this.text,
+      this.back = true,
+      this.icon,
+      this.isLoading = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,21 @@ class CustomButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    isLoading
+                        ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: kPrimaryColorOne,
+                              strokeWidth: 2.0,
+                            ),
+                          )
+                        : Container(),
+                    isLoading
+                        ? const SizedBox(
+                            width: 20,
+                          )
+                        : Container(),
                     icon is IconData
                         ? Icon(icon,
                             size: 40,
@@ -52,9 +69,30 @@ class CustomButton extends StatelessWidget {
                             color: back ? Colors.white : kPrimaryColorOne)),
                   ],
                 )
-              : Text(text,
-                  style: kLinkMedium.copyWith(
-                      color: back ? Colors.white : kPrimaryColorOne)),
+              : Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2.0,
+                            ),
+                          )
+                        : Container(),
+                    isLoading
+                        ? const SizedBox(
+                            width: 20,
+                          )
+                        : Container(),
+                    Text(text,
+                        style: kLinkMedium.copyWith(
+                            color: back ? Colors.white : kPrimaryColorOne)),
+                  ],
+                ),
         ));
   }
 }

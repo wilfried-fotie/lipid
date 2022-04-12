@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 Color kPrimaryColorOne = const Color(0xff9B6F52);
 Color kPrimaryColorTwo = const Color(0xff706255);
 Color kPrimaryColorThree = const Color(0xff4E4B66);
+Color kPrimaryColorFor = const Color(0xffCA976A);
 
 Color kGreyOne = const Color(0xff8D9091);
 Color kGreyTwo = const Color(0xffCCCCCC);
 Color kGreyThree = const Color(0xffEFEFEF);
+Color kBg = const Color(0xffF7F7FC);
 Color kGreyFor = const Color(0xffFBFBFB);
 Color kPrimaryGrey = const Color(0xff1B2124);
 Color kAltOne = const Color(0xffFFFCD1);
@@ -155,7 +157,7 @@ InputDecoration input = InputDecoration(
     borderRadius: BorderRadius.circular(4.0),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: kGreyTwo, width: .5),
+    borderSide: BorderSide(color: kGreyTwo.withOpacity(.3), width: 1),
     borderRadius: BorderRadius.circular(4.0),
   ),
 );

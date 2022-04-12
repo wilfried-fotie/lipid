@@ -1,4 +1,4 @@
-package com.example.lipid
+package com.lipidadmin.app
 
 import io.flutter.embedding.android.FlutterActivity
 
